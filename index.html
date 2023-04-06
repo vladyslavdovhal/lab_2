@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛБ2 Довгаль В. Р.</title>
+    <style>
+        .calculator {
+            display: inline-grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 8px;
+            max-width: 200px;
+        }
+        button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            font-size: 1.5em;
+            padding: 8px;
+        }
+        input {
+            font-size: 1.5em;
+            text-align: right;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ЛБ2 Довгаль В. Р. КІУКІ-19-8</h1>
+    <div>
+        <input id="expression" readonly>
+        <input id="result" readonly>
+    </div>
+    <div class="calculator">
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+        <button onclick="appendOperator('+')">+</button>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+        <button onclick="appendOperator('-')">-</button>
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+        <button onclick="appendOperator('*')">*</button>
+        <button onclick="appendNumber(0)">0</button>
+        <button onclick="clearExpression()">C</button>
+        <button onclick="calculateResult()">=</button>
+        <button onclick="appendOperator('/')">/</button>
+    </div>
+    <script>
+        // отримуємо доступ до елементу з ідентифікатором "expression"
+        const expressionInput = document.getElementById('expression');
+        // отримуємо доступ до елементу з ідентифікатором "result"
+        const resultInput = document.getElementById('result');
+
+        // функція для додавання чисел до виразу
+        function appendNumber(number) {
+            expressionInput.value += number;
+        }
+
+        // функція для додавання операторів до виразу
+        function appendOperator(operator) {
+            expressionInput.value += operator;
+        }
+
+        // функція для очищення виразу та результату
+        function clearExpression() {
+            expressionInput.value = '';
+            resultInput.value = '';
+        }
+
+        // функція для обчислення результату виразу
+        function calculateResult() {
+            try {
+                // обчислюємо результат виразу
+                const result = eval(expressionInput.value);
+                // встановлюємо результат у відповідне поле
+                resultInput.value = result;
+            } catch (error) {
+                // якщо виникла помилка, встановлюємо повідомлення про помилку у відповідне поле
+                resultInput.value = 'Помилка!';
+            }
+        }
+    </script>
+</body>
+</html>
